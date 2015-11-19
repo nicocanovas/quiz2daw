@@ -21,6 +21,17 @@ exports.adminRequired = function(req,res, next){
 	}
 };
 
+exports.profesorRequired = function(req,res, next){
+	if(req.session && req.session.role == "1" || req.session.role == "0"){
+		next();
+		
+	}else{ 
+		req.session.errors = [{"message": 'No esta autenticado como admin'}];
+		res.redirect("/login");
+	}
+};
+
+
 
 // Get/login -- Formulario de login
 exports.new = function(req,res){
@@ -54,6 +65,9 @@ exports.create = function(req,res){
                     if(profesor) {
                         req.session.profesor = {id:profesor.id, nombre:profesor.nombre};
                         req.session.role = 1;
+						if(profesor.userId = 1){
+							 req.session.role = 0;
+						}
                     }
                     var alumnoController = require('./alumno_controller');
                     alumnoController.roleAlumno(user.id,function(error,alumno){
@@ -77,5 +91,6 @@ exports.create = function(req,res){
 
 exports.destroy = function(req,res){
 	delete req.session.user;
-	res.redirect(req.session.redir.toString());
+	delete req.session.role;
+	res.redirect('/login');
 };

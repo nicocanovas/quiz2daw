@@ -46,6 +46,9 @@ sequelize.sync().then(function() {
 		});
 		User.create({ username: 'pepe' ,
 					  password: '5678'
+		});
+		User.create({ username: 'profesor' ,
+					  password: '1111'
 		})
 		.then(function(){console.log('Tabla User inicializada')});
 		};
@@ -84,6 +87,14 @@ sequelize.sync().then(function() {
 			  movil: '699699699',
 			  departamento: 'Informatica',
 			  userId: 1,
+		});
+		Profesor.create({ apellidos: 'Sierra Olmo' ,
+			  nombre: 'Jose',
+			  email: 'joselopez@gmail.com',
+			  dni: '87654321A',
+			  movil: '654654654',
+			  departamento: 'Informatica',
+			  userId: 3,
 		})
 		.then(function(){console.log('Tabla Profesor inicializada')});
 		};

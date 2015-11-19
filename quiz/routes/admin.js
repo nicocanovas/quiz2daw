@@ -6,11 +6,11 @@ var autorController = require('../controllers/autor_controller');
 var commentController = require('../controllers/comment_controller');
 var sessionController = require('../controllers/session_controller');
 
-/* Listado - Alex Baquerizo Jimenez */
 
 
 
-var cuestionarioController = require('../controllers/cuestionario_controller');//para listado de cuestionario
+
+var cuestionarioController = require('../controllers/cuestionario_controller');
 var observacionController = require('../controllers/observacion_controller');
 
 
@@ -97,7 +97,7 @@ router.put('/quizes/:quizId(\\d+)', sessionController.loginRequired, quizControl
 router.delete('/quizes/:quizId(\\d+)', sessionController.loginRequired, quizController.destroy);
 
 //Profesores
-router.get('/profesores', sessionController.adminRequired, profesorController.index); /* Listado - Alex Baquerizo Jimenez */
+router.get('/profesores', sessionController.adminRequired, profesorController.index); 
 router.get('/profesores/new', sessionController.adminRequired, profesorController.new);
 router.post('/profesores/create', sessionController.adminRequired, profesorController.create);
 router.get('/profesores/:profesorId(\\d+)', sessionController.adminRequired, profesorController.show);

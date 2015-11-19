@@ -28,6 +28,8 @@
     	</header>
 
     	<nav class="main" id="n1" role="navigation">
+		
+			<% if(session.role == "0"){ %>
 			<span><a href="/admin/">Inicio</a></span>
 			<span><a href="/admin/quizes">Preguntas</a></span>
 			<span><a href="/admin/users">Usuarios</a></span>
@@ -37,7 +39,19 @@
 			<span><a href="/admin/cuestionarios">Cuestionarios</a></span>
 			<span><a href="/admin/materias">Materias</a></span>
 			<span><a href="/admin/observaciones">Observaciones</a></span>
+			<%}else if(session.role == "1"){%>
+			<span><a href="/admin/">Inicio</a></span>
+			<span><a href="/admin/cuestionarios">Cuestionarios</a></span>
+			<%}else if(session.role == "2"){%>
+			<span><a href="/admin/">Inicio</a></span>
+			<span><a href="/admin/cuestionarios">Cuestionarios</a></span>
+			<%}%>
+					
 		</nav>
+		
+		
+		
+		
     	<section class="main" id="s1">
 			<% if(typeof errors != "undefined" && errors != null  && errors.length>0){ %>
 				<span id='ErrorMsgs'>
