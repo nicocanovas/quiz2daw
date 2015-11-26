@@ -12,7 +12,7 @@ exports.loginRequired = function(req,res, next){
 
 
 exports.adminRequired = function(req,res, next){
-	if(req.session.user && req.session.user.username == "admin"){
+	if(req.session.user && req.session.user.id == "1"){
 		next();
 		
 	}else{ 

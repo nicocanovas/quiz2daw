@@ -2,7 +2,9 @@
 <html lang="es">
   <head>
   	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
     <title> Quiz </title>
+	<!--
     <link rel='stylesheet' type='text/css' href='/stylesheets/style.css' />
     <link rel='stylesheet'
     		type='text/css'
@@ -12,11 +14,92 @@
     		type='text/css'
     		media='only screen and (max-width: 480px)'
     		href='/stylesheets/smartphone.css' />
-    
+	-->
+	<link rel='stylesheet' type='text/css' href='/bootstrap/css/bootstrap.min.css' />
+	<link rel='stylesheet' type='text/css' href='/bootstrap/css/bootstrap-theme.min.css' />
+    <link rel='stylesheet' type='text/css' href='/stylesheets/dashboard.css' />
   </head>
 
   <body>
-  	<div id="page-wrap">
+    <nav class="navbar navbar-inverse navbar-fixed-top">
+      <div class="container-fluid">
+        <div class="navbar-header">
+          <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+          <a class="navbar-brand" href="#">Quiz: el juego de las preguntas</a>
+        </div>
+        <div id="navbar" class="navbar collapse">
+           <ul class="nav nav-sidebar">
+			<% if(!session.user){ %>
+				<!-- <span class="right"> --> <li><a href="/login">Login</a></li></span>
+			<%}else{%>
+				<!-- <span class="right"> --> <li><a>Rol:<%=session.role%> - <%=session.user.username%></a></li><li><a href="/logout">Logout</a></li></span>
+			<%}%>
+			<li><a href="/admin/">Inicio</a></li>
+			<li><a href="/admin/quizes">Preguntas</a></li>
+			<li><a href="/admin/users">Usuarios</a></li>
+			<li><a href="/admin/alumnos">Alumnos</a></li>
+			<li><a href="/admin/profesores">Profesores</a></li>
+			<li><a href="/admin/grupos">Grupos</a></li>
+			<li><a href="/admin/cuestionarios">Cuestionarios</a></li>
+			<li><a href="/admin/materias">Materias</a></li>
+			<li><a href="/admin/observaciones">Observaciones</a></li>
+          </ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <div class="container-fluid">
+      <div class="row">
+        <div class="col-sm-3 col-md-2 sidebar">
+          <ul class="nav nav-sidebar">
+            <% if(!session.user){ %>
+				<!-- <span class="right"> --> <li><a href="/login">Login</a></li></span>
+			<%}else{%>
+				<!-- <span class="right"> --> <li><a>Rol:<%=session.role%> - <%=session.user.username%></a></li><li><a href="/logout">Logout</a></li></span>
+			<%}%>
+			<li><a href="/admin/">Inicio</a></li>
+			<li><a href="/admin/quizes">Preguntas</a></li>
+			<li><a href="/admin/users">Usuarios</a></li>
+			<li><a href="/admin/alumnos">Alumnos</a></li>
+			<li><a href="/admin/profesores">Profesores</a></li>
+			<li><a href="/admin/grupos">Grupos</a></li>
+			<li><a href="/admin/cuestionarios">Cuestionarios</a></li>
+			<li><a href="/admin/materias">Materias</a></li>
+			<li><a href="/admin/observaciones">Observaciones</a></li>
+          </ul>
+        </div>
+        <div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
+			<% if(typeof errors != "undefined" && errors != null  && errors.length>0){ %>
+				<section id="alerts">
+					<div class="alert alert-danger">
+						Corregir errores:<br />
+						<% for (var i in errors){ %>
+							<span> <%= errors[i].message %> </span><br />
+						<% } %>
+					</div>	
+				</section>
+				<% } %>
+			<div><%- body %></div>
+        </div>
+      </div>
+    </div>
+    <nav class="navbar navbar-inverse navbar-fixed-bottom">
+      <div class="container-fluid">
+        <div id="navbar" class="navbar-collapse collapse">
+			<p><a href="http://es.wikipedia.org/wiki/Quiz">¿Qué es un Quiz?</a></p>
+			<p><a href="https://github.com/2DAW-2Mares/quiz2daw">Repositorio en GitHub</a></p>
+			<p><a href="/autores">Autores</a></p>
+        </div>
+      </div>
+    </nav>
+	<!--
+	<div id="page-wrap">
   		<header class="main" id="h1">
 			<% if(!session.user){ %>
 				<span class="right"><a href="/login">Login</a></span>
@@ -65,12 +148,17 @@
 
     	</section>
 
-    	<footer class="main" id="f1">
-        <p><a href="http://es.wikipedia.org/wiki/Quiz">¿Qué es un Quiz?</a></p>
-        <p><a href="https://github.com/2DAW-2Mares/quiz2daw">Repositorio en GitHub</a></p>
+	<footer class="main" id="f1">
+		<p><a href="http://es.wikipedia.org/wiki/Quiz">¿Qué es un Quiz?</a></p>
+		<p><a href="https://github.com/2DAW-2Mares/quiz2daw">Repositorio en GitHub</a></p>
 		<p><a href="/autores">Autores</a></p>
    	</footer>
 
     </div>
+	-->
+    <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+    <!-- Include all compiled plugins (below), or include individual files as needed -->
+    <script src="/bootstrap/js/bootstrap.min.js"></script>
   </body>
 </html>
