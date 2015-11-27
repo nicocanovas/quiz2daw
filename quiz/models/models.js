@@ -36,6 +36,10 @@ CuestionarioAsignado.belongsTo(Cuestionario, Alumno);
 Alumno.hasMany(CuestionarioAsignado);
 Cuestionario.hasMany(CuestionarioAsignado);
 
+Quiz.belongsToMany(Cuestionario, {through: 'preguntaIncorporada'});
+Cuestionario.belongsToMany(Quiz, {through: 'preguntaIncorporada'});
+
+
 // sequelize.sync() crea e inicializa tabla de preguntas en DB
 sequelize.sync().then(function() {
 	// then(..) ejecuta el manejador una vez creada la tabla
@@ -110,6 +114,13 @@ sequelize.sync().then(function() {
 		.then(function(){console.log('Tabla Materia inicializada')});
 		};
 	});
+	Cuestionario.findAll({
+			include: [{ model: Quiz }]
+		}).then(
+                function(cuestionarios) {
+			console.log(cuestionarios.length());
+		})
+
 });
 
 exports.Alumno = Alumno;
