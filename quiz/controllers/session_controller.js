@@ -64,9 +64,11 @@ exports.create = function(req,res){
                     }
                     if(profesor) {
                         req.session.profesor = {id:profesor.id, nombre:profesor.nombre};
-                        req.session.role = 1;
-						if(profesor.userId = 1){
+                        
+						if(profesor.userId ==  1){
 							 req.session.role = 0;
+						}else{
+						req.session.role = 1;
 						}
                     }
                     var alumnoController = require('./alumno_controller');
