@@ -52,6 +52,7 @@ exports.create = function(req, res) {
 	var quiz = models.Quiz.build( req.body.quiz );
 	
 	//guarda en DB los campos pregunta y respuesta de quiz
+	quiz.addCuestionarios(req.cuestionario);
 	quiz.validate()
 	.then(
 		function(err){

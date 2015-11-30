@@ -21,6 +21,6 @@
 </table>
 <p>
 	<%if(session.user) {%>
-		<a href="/admin/quizes/new"><button type="button">Crear pregunta</button></a>
+		<a href="/admin/quizes/<%= cuestionarioId %>/new"><button type="button">Crear pregunta</button></a>
 	<%}%>
 </p>

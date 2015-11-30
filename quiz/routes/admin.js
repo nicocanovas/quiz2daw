@@ -63,6 +63,8 @@ router.delete('/cuestionarios/:cuestionarioId(\\d+)', sessionController.loginReq
 router.get('/cuestionarios/new',sessionController.loginRequired, cuestionarioController.new);
 router.post('/cuestionarios/create', sessionController.loginRequired, cuestionarioController.create);
 router.post('/cuestionarios/:cuestionarioId(\\d+)/duplicate', sessionController.loginRequired, cuestionarioController.duplicate);
+router.get('/cuestionarios/:cuestionarioId(\\d+)/show', cuestionarioController.show);
+router.get('/cuestionarios/:cuestionarioId(\\d+)/quizes', cuestionarioController.quizes);
 
 //Grupos
 router.get('/grupos', 							sessionController.adminRequired,	grupoController.index);
@@ -91,7 +93,7 @@ router.delete('/observaciones/:observacionId(\\d+)', sessionController.adminRequ
 router.get('/quizes', quizController.index);
 router.get('/quizes/:quizId(\\d+)', quizController.show);
 router.get('/quizes/:quizId(\\d+)/answer', quizController.answer);
-router.get('/quizes/new', sessionController.loginRequired, quizController.new);
+router.get('/quizes/:cuestionarioId(\\d+)/new', sessionController.loginRequired, quizController.new);
 router.post('/quizes/create', sessionController.loginRequired, quizController.create);
 router.get('/quizes/:quizId(\\d+)/edit', sessionController.loginRequired, quizController.edit);
 router.put('/quizes/:quizId(\\d+)', sessionController.loginRequired, quizController.update);

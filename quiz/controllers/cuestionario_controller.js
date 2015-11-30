@@ -103,3 +103,14 @@ exports.duplicate = function(req, res) {
 		}
 	);
 }
+
+exports.show = function(req, res, next) {
+	 res.render('cuestionarios/show',{cuestionario: req.cuestionario});
+};
+
+exports.quizes = function(req, res, next) {
+	req.cuestionario.getQuizzes().then(function(quizes){
+			res.render('quizes/index.ejs', {quizes: quizes, cuestionarioId: req.cuestionario.id});
+		}).catch(function(error){next(error)});;
+
+};
