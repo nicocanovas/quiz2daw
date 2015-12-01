@@ -85,23 +85,27 @@ exports.create = function(req, res) {
 
 // POST /cuestionario/duplicate
 exports.duplicate = function(req, res) {
-	var cuestionario = models.Cuestionario.build( req.cuestionario);
+	var cuestionario = models.Cuestionario.build();
 	cuestionario.set('fechaFin',req.cuestionario.fechaFin);
 	cuestionario.set('observaciones',req.cuestionario.observaciones);
 	cuestionario.set('creador',req.session.profesor.id);
+	
+	req.cuestionario.getQuizzes().then(function(quizes){cuestionario.setQuizzes(quizes);
+	
 	cuestionario.validate()
-	.then(
-		function(err){
-			if(err) {
-			res.render('cuestionarios', {cuestionario: cuestionario, errors: err.errors});
-			} else {
-				for(prop in cuestionario.dataValues) {console.log(prop + ' - ' + cuestionario[prop])};
-				cuestionario.save({fields: ["fechaFin", "observaciones", "creador"]}).then(function(){
-					res.redirect('/admin/cuestionarios');
-				})	//Redireccion HTTP (URL relativo) lista de cuestionarios
+		.then(
+			function(err){
+				if(err) {
+				res.render('cuestionarios', {cuestionario: cuestionario, errors: err.errors});
+				} else {
+					for(prop in cuestionario.dataValues) {console.log(prop + ' - ' + cuestionario[prop])};
+					cuestionario.save({fields: ["fechaFin", "observaciones", "creador"]}).then(function(){
+						res.redirect('/admin/cuestionarios');
+					})	//Redireccion HTTP (URL relativo) lista de cuestionarios
+				}
 			}
-		}
-	);
+		);
+	});
 }
 
 exports.show = function(req, res, next) {

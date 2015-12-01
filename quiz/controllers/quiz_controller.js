@@ -23,7 +23,7 @@ exports.index = function(req, res) {
 
 // GET /quizes/:quizId
 exports.show = function(req, res) {
-    res.render('quizes/show', {quiz: req.quiz});
+    res.render('quizes/show', {quiz: req.quiz, cuestionario : req.cuestionario});
 };
 
 
@@ -36,7 +36,7 @@ exports.answer = function(req, res) {
 	if(req.query.respuesta === req.quiz.respuesta){
 		resultado = 'Correcto';
 	}
-	res.render('quizes/answer', {respuesta: resultado, quiz: req.quiz});
+	res.render('quizes/answer', {respuesta: resultado, quiz: req.quiz, cuestionario : req.cuestionario});
         };
 
 // GET /quizes/new
