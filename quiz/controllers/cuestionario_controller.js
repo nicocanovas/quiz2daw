@@ -110,7 +110,7 @@ exports.show = function(req, res, next) {
 
 exports.quizes = function(req, res, next) {
 	req.cuestionario.getQuizzes().then(function(quizes){
-			res.render('quizes/index.ejs', {quizes: quizes, cuestionarioId: req.cuestionario.id});
+			res.render('quizes/index.ejs', {quizes: quizes, cuestionario: req.cuestionario});
 		}).catch(function(error){next(error)});;
 
 };
