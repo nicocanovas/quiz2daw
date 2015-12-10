@@ -43,10 +43,10 @@ router.param('quizId',quizController.load); //autoload :quizId
 router.param('userId', userController.load);//autoload :userId
 
 //Alumnos
+router.get('/alumnos/:alumnoId(\\d+)/edit',     sessionController.adminRequired, 	grupoController.cogerTodos,		alumnoController.edit);
+router.get('/alumnos/new', 						sessionController.adminRequired,	grupoController.cogerTodos, 	alumnoController.new);
 router.get('/alumnos', 							sessionController.adminRequired, 	alumnoController.index); 
-router.get('/alumnos/new', 						sessionController.adminRequired, 	alumnoController.new);
 router.post('/alumnos/create', 					sessionController.adminRequired, 	alumnoController.create);
-router.get('/alumnos/:alumnoId(\\d+)/edit',     sessionController.adminRequired, 	alumnoController.edit);
 router.put('/alumnos/:alumnoId(\\d+)',          sessionController.adminRequired, 	alumnoController.update);
 router.delete('/alumnos/:alumnoId(\\d+)', 		sessionController.adminRequired, 	alumnoController.destroy);
 
@@ -65,6 +65,7 @@ router.post('/cuestionarios/create', 							sessionController.profesorRequired, 
 router.post('/cuestionarios/:cuestionarioId(\\d+)/duplicate', 	sessionController.profesorRequired, cuestionarioController.duplicate);
 router.get('/cuestionarios/:cuestionarioId(\\d+)/show',												cuestionarioController.show);
 router.get('/cuestionarios/:cuestionarioId(\\d+)/quizes', 											cuestionarioController.quizes);
+router.get('/cuestionarios/:cuestionarioId(\\d+)/grupos',    	sessionController.profesorRequired, cuestionarioController.grupos);
 
 //Grupos
 router.get('/grupos', 							sessionController.adminRequired,	grupoController.index);

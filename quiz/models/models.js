@@ -32,6 +32,12 @@ Profesor.hasMany(Grupo);
 Cuestionario.belongsTo(Profesor, {foreignKey: 'creador'});
 Profesor.hasMany(Cuestionario);
 
+Cuestionario.belongsTo(Alumno);
+Alumno.hasMany(Cuestionario);
+
+Alumno.belongsTo(Grupo);
+Grupo.hasMany(Alumno);
+
 CuestionarioAsignado.belongsTo(Cuestionario, Alumno);	
 Alumno.hasMany(CuestionarioAsignado);
 Cuestionario.hasMany(CuestionarioAsignado);

@@ -93,7 +93,15 @@ exports.update = function(req, res) {
 };
 
 exports.destroy = function(req, res) {
-    req.quiz.destroy().then( function(){
-        res.redirect('/admin/cuestionarios/'+req.cuestionario.id+'/quizes');
-    }).catch(function(error){next(error)});
+	req.cuestionario.removeQuiz(req.quiz).then(function(){
+		req.quiz.countCuestionarios().then(function(count){
+			if(count === 0){
+				req.quiz.destroy().then( function(){
+					res.redirect('/admin/cuestionarios/'+req.cuestionario.id+'/quizes');
+				}).catch(function(error){next(error)});
+			}else{
+				res.redirect('/admin/cuestionarios/'+req.cuestionario.id+'/quizes');	
+			}
+		});
+	});
 };

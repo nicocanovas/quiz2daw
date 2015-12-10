@@ -118,3 +118,11 @@ exports.quizes = function(req, res, next) {
 		}).catch(function(error){next(error)});;
 
 };
+
+exports.grupos = function(req, res, next) {
+	models.Grupo.findAll().then(
+		function(grupos){
+			res.render('cuestionarios/grupos.ejs', {grupos: grupos});
+		}
+	).catch(function(error){next(error);})
+};
